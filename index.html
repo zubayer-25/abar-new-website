@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>Zubayer Islam — Senior Software Developer | Portfolio</title>
+  <meta name="description"
+    content="Zubayer Islam — Senior Software Developer specializing in full-stack engineering, WebGL, and real-time interactive web experiences. Explore projects, skills, and experience.">
+  <meta name="keywords"
+    content="Zubayer Islam, Zubayer Islam Developer, Zubayer Islam Portfolio, Software Developer, Full Stack Engineer, Web Developer">
+  <meta name="author" content="Zubayer Islam">
+  <meta name="robots" content="index, follow">
+  <!-- Open Graph / social preview tags -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Zubayer Islam — Senior Software Developer">
+  <meta property="og:description" content="Full-stack & WebGL engineer. Explore my projects, skills, and experience.">
+  <meta property="og:site_name" content="Zubayer Islam Portfolio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zubayer Islam — Senior Software Developer">
+  <meta name="twitter:description" content="Full-stack & WebGL engineer. Explore my projects, skills, and experience.">
+  <!-- Structured data so search engines associate this page with the name "Zubayer Islam" -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Zubayer Islam",
+  "jobTitle": "Senior Software Developer",
+  "url": "",
+  "description": "Full-stack & WebGL engineer specializing in real-time interactive web experiences."
+}
+</script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+    :root {
+      --bg: #080a0f;
+      --bg-alt: #0c0f16;
+      --glass: rgba(16, 20, 30, 0.55);
+      --glass-strong: rgba(16, 20, 30, 0.78);
+      --glass-border: rgba(140, 170, 255, 0.14);
+      --cyan: #00e5ff;
+      --violet: #7c5cff;
+      --amber: #ffc163;
+      --text: #e8edf5;
+      --muted: #8b96a8;
+      --danger: #ff5c7a;
+      --radius: 14px;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    ::selection {
+      background: var(--cyan);
+      color: #04121a;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-display);
+      margin: 0;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--cyan), var(--violet));
+      border-radius: 10px;
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    /* ============================================================
+   BACKGROUND CANVAS
+   ============================================================ */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse at 20% 10%, rgba(124, 92, 255, 0.10), transparent 55%),
+        radial-gradient(ellipse at 80% 90%, rgba(0, 229, 255, 0.08), transparent 55%),
+        var(--bg);
+    }
+
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/></svg>");
+      mix-blend-mode: overlay;
+    }
+
+    /* ============================================================
+   GLASSMORPHISM / HUD CARD SYSTEM
+   ============================================================ */
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+    }
+
+    .card {
+      position: relative;
+      padding: 26px;
+      transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 229, 255, 0.35);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45), 0 0 30px rgba(0, 229, 255, 0.06);
+    }
+
+    .card::before,
+    .card::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      opacity: 0.45;
+      transition: opacity .3s, border-color .3s;
+      pointer-events: none;
+    }
+
+    .card::before {
+      top: -1px;
+      left: -1px;
+      border-top: 2px solid var(--cyan);
+      border-left: 2px solid var(--cyan);
+      border-top-left-radius: 4px;
+    }
+
+    .card::after {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 2px solid var(--violet);
+      border-right: 2px solid var(--violet);
+      border-bottom-right-radius: 4px;
+    }
+
+    .card:hover::before,
+    .card:hover::after {
+      opacity: 1;
+    }
+
+    /* ============================================================
+   NAVIGATION
+   ============================================================ */
+    #nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      width: min(920px, calc(100% - 32px));
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: var(--glass-strong);
+      border: 1px solid var(--glass-border);
+      border-radius: 999px;
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .logo-mark {
+      color: var(--cyan);
+      font-family: var(--font-mono);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 26px;
+      margin: 0;
+      padding: 0;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--muted);
+      transition: color .25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      transition: width .3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.2rem;
+    }
+
+    @media (max-width:800px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--glass-strong);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: max-height .35s ease, opacity .3s ease;
+      }
+
+      .nav-links.open {
+        max-height: 400px;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-links li {
+        border-top: 1px solid var(--glass-border);
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 14px 22px;
+      }
+    }
+
+    /* ============================================================
+   LAYOUT / SECTIONS
+   ============================================================ */
+    main {
+      position: relative;
+      z-index: 1;
+      padding: 0 6vw;
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 120px 0 60px;
+    }
+
+    .section-head {
+      margin-bottom: 44px;
+      max-width: 640px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--cyan);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      margin-bottom: 10px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+      margin-bottom: 8px;
+    }
+
+    .section-head .sub {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    /* Editable text affordance */
+    .editable-text {
+      outline: none;
+      border-radius: 6px;
+      transition: background .2s;
+    }
+
+    body.edit-mode .editable-text {
+      cursor: text;
+      background: rgba(0, 229, 255, 0.05);
+      box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.18) inset;
+      padding: 2px 4px;
+    }
+
+    body.edit-mode .editable-text:focus {
+      background: rgba(0, 229, 255, 0.12);
+      box-shadow: 0 0 0 1.5px var(--cyan) inset;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border: 1px solid transparent;
+      transition: transform .25s, box-shadow .25s, background .25s;
+      white-space: nowrap;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      color: #04121a;
+    }
+
+    .btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.25);
+    }
+
+    .btn.ghost {
+      border-color: var(--glass-border);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .btn.ghost:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .btn.small {
+      padding: 9px 18px;
+      font-size: 0.82rem;
+    }
+
+    /* Edit-only controls */
+    .edit-only {
+      display: none;
+    }
+
+    body.edit-mode .edit-only {
+      display: inline-flex;
+    }
+
+    .link-edit-btn,
+    .img-edit-btn,
+    .mini-x,
+    .mini-icon-btn,
+    .delete-btn {
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 6px 9px;
+      font-size: 0.8rem;
+      transition: all .2s;
+    }
+
+    .link-edit-btn:hover,
+    .img-edit-btn:hover,
+    .mini-icon-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .mini-x:hover,
+    .delete-btn:hover {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 3;
+    }
+
+    .add-btn,
+    .add-mini {
+      border: 1px dashed var(--glass-border);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      transition: all .2s;
+    }
+
+    .add-btn:hover,
+    .add-mini:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .add-mini {
+      padding: 6px 14px;
+      font-size: 0.78rem;
+    }
+
+    /* ============================================================
+   HERO
+   ============================================================ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 140px 6vw 60px;
+    }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+      max-width: 1180px;
+      width: 100%;
+    }
+
+    .hero-text {
+      max-width: 640px;
+    }
+
+    .hero-name {
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      line-height: 1.05;
+      background: linear-gradient(135deg, #fff, var(--cyan) 60%, var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 10px 0 4px;
+    }
+
+    .hero-title {
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .hero-tagline {
+      color: var(--muted);
+      font-size: 1.02rem;
+      max-width: 520px;
+      margin-bottom: 32px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .cta-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 1.5px solid var(--glass-border);
+      box-shadow: 0 0 60px rgba(0, 229, 255, 0.12);
+    }
+
+    .avatar-ring::before {
+      content: '';
+      position: absolute;
+      inset: -18px;
+      border-radius: 50%;
+      border: 1px dashed rgba(124, 92, 255, 0.35);
+      animation: spin 26s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--glass-border);
+    }
+
+    .img-edit-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      animation: bob 2s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(8px);
+      }
+    }
+
+    @media (max-width:900px) {
+      .hero-inner {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 36px;
+      }
+
+      .hero-tagline {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-ctas {
+        justify-content: center;
+      }
+
+      .avatar-wrap {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    /* ============================================================
+   ABOUT
+   ============================================================ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px;
+    }
+
+    .about-bio>* {
+      margin-bottom: 16px;
+    }
+
+    .about-vision {
+      color: var(--muted);
+      font-style: italic;
+      border-left: 2px solid var(--cyan);
+      padding-left: 16px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--glass-border);
+      font-size: 0.94rem;
+    }
+
+    .contact-row:last-child {
+      border-bottom: none;
+    }
+
+    .contact-row i {
+      color: var(--cyan);
+      width: 18px;
+      text-align: center;
+    }
+
+    .resume-row {
+      border-bottom: none;
+      padding-top: 18px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width:800px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================================
+   TIMELINE (Education & Experience)
+   ============================================================ */
+    .timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      padding-left: 26px;
+      border-left: 1.5px solid var(--glass-border);
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -32.5px;
+      top: 30px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 0 4px rgba(0, 229, 255, 0.15), 0 0 16px rgba(0, 229, 255, 0.6);
+    }
+
+    .card-inner {
+      position: relative;
+    }
+
+    .card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .degree,
+    .role {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.12rem;
+    }
+
+    .year,
+    .duration {
+      color: var(--cyan);
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    .institution,
+    .company {
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .result {
+      color: var(--amber);
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .achievements {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .points {
+      list-style: none;
+      margin: 10px 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .points li::before {
+      content: '▸';
+      color: var(--violet);
+      flex-shrink: 0;
+    }
+
+    .points li .mini-x {
+      margin-left: auto;
+    }
+
+    /* ============================================================
+   SKILLS
+   ============================================================ */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .skill-card .card-row {
+      margin-bottom: 16px;
+      align-items: center;
+    }
+
+    .cat-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+
+    .skill-item {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    .level-label {
+      color: var(--muted);
+    }
+
+    .skill-bar-track {
+      width: 100%;
+      height: 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      border-radius: 4px;
+      transition: width .3s ease;
+    }
+
+    .skill-range {
+      width: 100%;
+      margin-top: 6px;
+      accent-color: var(--cyan);
+    }
+
+    .skill-item .mini-x {
+      position: absolute;
+      top: 0;
+      right: -4px;
+      transform: translateX(100%);
+    }
+
+    .add-cat-btn {
+      align-self: flex-start;
+    }
+
+    /* ============================================================
+   PROJECTS
+   ============================================================ */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 26px;
+      margin-bottom: 26px;
+    }
+
+    .project-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .project-image-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+
+    .project-card:hover .project-image {
+      transform: scale(1.06);
+    }
+
+    .project-image-wrap .img-edit-btn {
+      border-radius: 8px;
+      width: auto;
+      height: auto;
+      padding: 8px 10px;
+    }
+
+    .project-card .card-inner {
+      padding: 22px;
+    }
+
+    .project-title {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 14px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+
+    .tag {
+      background: rgba(0, 229, 255, 0.08);
+      color: var(--cyan);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag-x {
+      background: none;
+      border: none;
+      color: inherit;
+      opacity: 0.7;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text);
+      border: 1px solid var(--glass-border);
+      padding: 8px 14px;
+      border-radius: 999px;
+      transition: all .2s;
+    }
+
+    .link-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* ============================================================
+   SOCIALS
+   ============================================================ */
+    .socials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .social-card {
+      position: relative;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+    }
+
+    .social-link i {
+      font-size: 1.3rem;
+      color: var(--cyan);
+      width: 24px;
+      text-align: center;
+    }
+
+    .social-card .link-edit-btn,
+    .social-card .mini-icon-btn,
+    .social-card .mini-x {
+      margin-left: auto;
+    }
+
+    /* ============================================================
+   CUSTOM SECTIONS
+   ============================================================ */
+    .custom-section {
+      position: relative;
+    }
+
+    .custom-content {
+      min-height: 80px;
+    }
+
+    .custom-content p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .custom-section .delete-btn {
+      position: static;
+      margin-top: 16px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      display: inline-flex;
+      gap: 8px;
+    }
+
+    /* ============================================================
+   FOOTER
+   ============================================================ */
+    footer {
+      text-align: center;
+      padding: 50px 6vw 70px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer .mono {
+      color: var(--cyan);
+    }
+
+    /* ============================================================
+   ADMIN / EDIT MODE UI
+   ============================================================ */
+    .edit-fab {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      z-index: 300;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-strong);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: var(--cyan);
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .edit-fab:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 14px 36px rgba(0, 229, 255, 0.2);
+    }
+
+    .edit-fab.hidden {
+      display: none;
+    }
+
+    .edit-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 250;
+      transform: translateY(-110%);
+      transition: transform .4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 14px 24px;
+      background: linear-gradient(90deg, rgba(0, 229, 255, 0.12), rgba(124, 92, 255, 0.12));
+      border-bottom: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .edit-banner.show {
+      transform: translateY(0);
+    }
+
+    .edit-banner-label {
+      font-weight: 600;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cyan);
+    }
+
+    .edit-banner-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .edit-banner-actions button {
+      border: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: all .2s;
+    }
+
+    .edit-banner-actions button:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .edit-banner-actions button.danger:hover {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    body.edit-mode main,
+    body.edit-mode #hero {
+      padding-top: 130px;
+    }
+
+    body.edit-mode #hero {
+      min-height: auto;
+      padding-bottom: 80px;
+    }
+
+    /* ============================================================
+   MODALS
+   ============================================================ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: rgba(4, 6, 10, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      width: min(400px, 90vw);
+      padding: 30px;
+    }
+
+    .modal h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .modal p {
+      margin: 0 0 16px;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.92rem;
+    }
+
+    .modal input:focus {
+      outline: none;
+      border-color: var(--cyan);
+    }
+
+    .modal-error {
+      color: var(--danger);
+      font-size: 0.82rem;
+      min-height: 18px;
+      margin-bottom: 6px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .modal-actions .primary {
+      border: none;
+    }
+
+    .modal-actions .ghost {
+      background: none;
+      border: 1px solid var(--glass-border);
+      color: var(--muted);
+      padding: 12px 20px;
+      border-radius: 999px;
+    }
+
+    .modal-actions .ghost:hover {
+      color: var(--text);
+    }
+
+    /* ============================================================
+   TOAST
+   ============================================================ */
+    .toast {
+      position: fixed;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%) translateY(140%);
+      z-index: 500;
+      background: var(--glass-strong);
+      border: 1px solid var(--glass-border);
+      color: var(--text);
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: transform .35s ease;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width:600px) {
+      .section {
+        padding: 90px 0 40px;
+      }
+
+      .edit-banner {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .edit-banner-actions {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+  <div class="grain-overlay"></div>
+
+  <!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#hero"><span class="logo-mark">&lt;/&gt;</span><span id="navName">Zubayer Islam</span></a>
+      <button id="navToggle" class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Floating Admin / Edit toggle -->
+  <button id="editToggleBtn" class="edit-fab" title="Admin / Edit Mode"><i class="fa-solid fa-lock"></i></button>
+
+  <!-- Edit control banner -->
+  <div id="editBanner" class="edit-banner">
+    <span class="edit-banner-label"><i class="fa-solid fa-pen-to-square"></i> Edit Mode Active</span>
+    <div class="edit-banner-actions">
+      <button id="btnSave"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+      <button id="btnAddSection"><i class="fa-solid fa-plus"></i> Add Custom Section</button>
+      <button id="btnChangePass"><i class="fa-solid fa-key"></i> Change Password</button>
+      <button id="btnExport"><i class="fa-solid fa-download"></i> Export Backup</button>
+      <button id="btnExit" class="danger"><i class="fa-solid fa-right-from-bracket"></i> Exit Edit Mode</button>
+    </div>
+  </div>
+
+  <!-- Password Modal -->
+  <div id="passModal" class="modal-overlay">
+    <div class="modal glass">
+      <h3>Admin Authentication</h3>
+      <p class="muted">Enter the admin password to unlock edit mode.</p>
+      <input type="password" id="passInput" placeholder="Password" autocomplete="off">
+      <div class="modal-error" id="passError"></div>
+      <div class="modal-actions">
+        <button id="passCancel" class="ghost">Cancel</button>
+        <button id="passSubmit" class="btn primary">Unlock</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Change Password Modal -->
+  <div id="changePassModal" class="modal-overlay">
+    <div class="modal glass">
+      <h3>Change Admin Password</h3>
+      <input type="password" id="oldPass" placeholder="Current password" autocomplete="off">
+      <input type="password" id="newPass" placeholder="New password" autocomplete="off">
+      <input type="password" id="confirmPass" placeholder="Confirm new password" autocomplete="off">
+      <div class="modal-error" id="changePassError"></div>
+      <div class="modal-actions">
+        <button id="changePassCancel" class="ghost">Cancel</button>
+        <button id="changePassSubmit" class="btn primary">Update Password</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- Hidden file inputs used for direct local uploads (converted to Base64 Data URLs) -->
+  <input type="file" id="imageUploadInput" accept="image/*" style="display:none">
+  <input type="file" id="resumeUploadInput" accept=".pdf,.doc,.docx,.odt,.rtf,image/*" style="display:none">
+
+  <main>
+
+    <!-- ============================================================
+       HERO
+       ============================================================ -->
+    <section id="hero">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <span class="eyebrow mono">// full-stack &amp; webgl engineer</span>
+          <h1 class="hero-name editable-text" data-path="hero.name" contenteditable="false"></h1>
+          <h2 class="hero-title editable-text" data-path="hero.title" contenteditable="false"></h2>
+          <p class="hero-tagline editable-text" data-path="hero.tagline" contenteditable="false"></p>
+          <div class="hero-ctas">
+            <div class="cta-wrap">
+              <a href="#" id="ctaPrimaryLink" class="btn primary" data-href-path="hero.ctaPrimary.link">
+                <span class="editable-text" data-path="hero.ctaPrimary.label" contenteditable="false"></span>
+              </a>
+              <button class="link-edit-btn edit-only"
+                onclick="promptEditLink('hero.ctaPrimary.link', this.previousElementSibling)"><i
+                  class="fa-solid fa-pen"></i></button>
+            </div>
+            <div class="cta-wrap">
+              <a href="#" id="ctaSecondaryLink" class="btn ghost" data-href-path="hero.ctaSecondary.link">
+                <span class="editable-text" data-path="hero.ctaSecondary.label" contenteditable="false"></span>
+              </a>
+              <button class="link-edit-btn edit-only"
+                onclick="promptEditLink('hero.ctaSecondary.link', this.previousElementSibling)"><i
+                  class="fa-solid fa-pen"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="avatar-wrap">
+          <div class="avatar-ring"></div>
+          <img id="heroAvatar" src="" alt="Profile photo" class="avatar-img">
+          <button class="img-edit-btn edit-only" onclick="triggerImageUpload('hero.avatar')"
+            title="Upload photo from device"><i class="fa-solid fa-upload"></i></button>
+        </div>
+      </div>
+      <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+    </section>
+
+    <!-- ============================================================
+       ABOUT
+       ============================================================ -->
+    <section id="about" class="section">
+      <div class="section-head reveal">
+        <span class="eyebrow mono">SEC.01</span>
+        <h2>About Me</h2>
+        <div class="sub">A little about who I am and what drives my work.</div>
+      </div>
+      <div class="about-grid reveal">
+        <div class="glass card about-bio">
+          <div class="editable-text" data-path="about.bio" contenteditable="false"></div>
+          <div class="editable-text about-vision" data-path="about.vision" contenteditable="false"></div>
+        </div>
+        <div class="glass card about-contact">
+          <div class="contact-row"><i class="fa-solid fa-location-dot"></i><span class="editable-text"
+              data-path="about.location" contenteditable="false"></span></div>
+          <div class="contact-row"><i class="fa-solid fa-envelope"></i><span class="editable-text"
+              data-path="about.email" contenteditable="false"></span></div>
+          <div class="contact-row"><i class="fa-solid fa-phone"></i><span class="editable-text" data-path="about.phone"
+              contenteditable="false"></span></div>
+          <div class="contact-row resume-row">
+            <a href="#" id="resumeLink" data-href-path="about.resume" target="_blank" rel="noopener"
+              class="btn ghost small"><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
+            <button class="link-edit-btn edit-only"
+              onclick="promptEditLink('about.resume', this.previousElementSibling)" title="Set resume URL"><i
+                class="fa-solid fa-pen"></i></button>
+            <button class="link-edit-btn edit-only" onclick="triggerResumeUpload()"
+              title="Upload resume file from device"><i class="fa-solid fa-upload"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       EDUCATION
+       ============================================================ -->
+    <section id="education" class="section">
+      <div class="section-head reveal">
+        <span class="eyebrow mono">SEC.02</span>
+        <h2>Academic &amp; Qualifications</h2>
+        <div class="sub">Degrees, institutions and honors along the way.</div>
+      </div>
+      <div id="educationList" class="timeline reveal"></div>
+      <br>
+      <button class="add-btn edit-only" onclick="addEducation()"><i class="fa-solid fa-plus"></i> Add Education</button>
+    </section>
+
+    <!-- ============================================================
+       SKILLS
+       ============================================================ -->
+    <section id="skills" class="section">
+      <div class="section-head reveal">
+        <span class="eyebrow mono">SEC.03</span>
+        <h2>Skills &amp; Tech Stack</h2>
+        <div class="sub">Tools and technologies I use to ship reliable products.</div>
+      </div>
+      <div id="skillsGrid" class="skills-grid reveal"></div>
+    </section>
+
+    <!-- ============================================================
+       PROJECTS
+       ============================================================ -->
+    <section id="projects" class="section">
+      <div class="section-head reveal">
+        <span class="eyebrow mono">SEC.04</span>
+        <h2>Featured Projects</h2>
+        <div class="sub">A selection of things I've designed, built, and shipped.</div>
+      </div>
+      <div id="projectsGrid" class="projects-grid reveal"></div>
+      <button class="add-btn edit-only" onclick="addProject()"><i class="fa-solid fa-plus"></i> Add Project</button>
+    </section>
+
+    <!-- ============================================================
+       EXPERIENCE
+       ============================================================ -->
+    <section id="experience" class="section">
+      <div class="section-head reveal">
+        <span class="eyebrow mono">SEC.05</span>
+        <h2>Experience &amp; Work History</h2>
+        <div class="sub">Where I've worked and what I was responsible for.</div>
+      </div>
+      <div id="experienceList" class="timeline reveal"></div>
+      <br>
+      <button class="add-btn edit-only" onclick="addExperience()"><i class="fa-solid fa-plus"></i> Add
+        Experience</button>
+    </section>
+
+    <!-- ============================================================
+       CONTACT / SOCIALS
+       ============================================================ -->
+    <section id="contact" class="section">
+      <div class="section-head reveal">
+        <span class="eyebrow mono">SEC.06</span>
+        <h2>Let's Connect</h2>
+        <div class="sub">Find me across the web, or reach out directly.</div>
+      </div>
+      <div id="socialsGrid" class="socials-grid reveal"></div>
+      <button class="add-btn edit-only" onclick="addSocial()"><i class="fa-solid fa-plus"></i> Add Social Link</button>
+    </section>
+
+    <!-- Dynamic custom sections render here -->
+    <div id="customSectionsContainer"></div>
+
+  </main>
+
+  <footer>
+    <span class="mono">// built with three.js + gsap</span> — © <span id="footerYear"></span> <span
+      id="footerName">Zubayer Islam</span>. All rights reserved.
+  </footer>
+
+  <!-- ============================================================
+     LIBRARIES
+     ============================================================ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    /* ================================================================
+       PLACEHOLDER IMAGE (offline-safe fallback, no network required)
+       ================================================================ */
+    const PLACEHOLDER_IMG = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400">' +
+      '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+      '<stop offset="0" stop-color="#0d1119"/><stop offset="1" stop-color="#181f30"/></linearGradient></defs>' +
+      '<rect width="100%" height="100%" fill="url(#g)"/>' +
+      '<text x="50%" y="50%" fill="#3d4a5e" font-family="monospace" font-size="22" text-anchor="middle" dominant-baseline="middle">NO IMAGE</text>' +
+      '</svg>'
+    );
+
+    /* ================================================================
+       DEFAULT DATA — clean placeholder content
+       ================================================================ */
+    const DEFAULT_DATA = {
+      hero: {
+        name: 'Zubayer Islam',
+        title: 'Senior Software Developer',
+        tagline: "I design and build immersive, high-performance web experiences — where clean engineering meets bold interactive design.",
+        avatar: 'https://picsum.photos/seed/devfolio-avatar/400/400',
+        ctaPrimary: { label: 'View Projects', link: '#projects' },
+        ctaSecondary: { label: 'Contact Me', link: '#contact' }
+      },
+      about: {
+        bio: "I'm a full-stack engineer with a passion for real-time graphics, developer tooling, and building products that feel alive. Over the past several years I've shipped everything from WebGL visualizers to distributed backend systems.",
+        vision: "My goal is to make software that respects people's time and attention — fast, accessible, and quietly delightful.",
+        location: 'Dhaka, Bangladesh',
+        email: 'zubayer.islam@example.com',
+        phone: '+1 (555) 012-3456',
+        resume: '#',
+        resumeFileName: null
+      },
+      education: [
+        { degree: 'M.Sc. in Computer Science', institution: 'University of Technology', year: '2022', result: 'CGPA 3.9 / 4.0', achievements: 'Graduated with distinction; thesis on real-time rendering pipelines.' },
+        { degree: 'B.Sc. in Computer Science & Engineering', institution: 'State Institute of Technology', year: '2020', result: 'CGPA 3.8 / 4.0', achievements: "Dean's List, 4 consecutive semesters." }
+      ],
+      skills: {
+        Frontend: [{ name: 'React / Next.js', level: 92 }, { name: 'Three.js / WebGL', level: 85 }, { name: 'TypeScript', level: 90 }],
+        Backend: [{ name: 'Node.js', level: 88 }, { name: 'Python', level: 80 }, { name: 'GraphQL', level: 75 }],
+        Databases: [{ name: 'PostgreSQL', level: 85 }, { name: 'MongoDB', level: 78 }, { name: 'Redis', level: 70 }],
+        DevOps: [{ name: 'Docker', level: 82 }, { name: 'AWS', level: 76 }, { name: 'CI / CD', level: 80 }],
+        Tools: [{ name: 'Git', level: 95 }, { name: 'Figma', level: 65 }, { name: 'Linux', level: 88 }]
+      },
+      projects: [
+        { title: 'Nebula — 3D Data Visualizer', description: 'An interactive WebGL dashboard that turns large datasets into explorable 3D landscapes, built with Three.js and D3.', tags: ['Three.js', 'React', 'D3.js'], demo: '#', source: '#', image: 'https://picsum.photos/seed/nebula/600/400' },
+        { title: 'Pulse — Realtime Chat Engine', description: 'A low-latency chat platform with presence, typing indicators, and end-to-end encryption, handling 50k concurrent sockets.', tags: ['Node.js', 'WebSocket', 'Redis'], demo: '#', source: '#', image: 'https://picsum.photos/seed/pulse/600/400' },
+        { title: 'Forge — CI/CD Pipeline Toolkit', description: 'A configurable pipeline builder that cut average deployment time by 60% across a 12-service microarchitecture.', tags: ['Docker', 'AWS', 'Python'], demo: '#', source: '#', image: 'https://picsum.photos/seed/forge/600/400' }
+      ],
+      experience: [
+        { company: 'Nova Systems Inc.', role: 'Senior Software Developer', duration: '2023 — Present', points: ['Led migration of the core platform to a microservices architecture, improving uptime to 99.98%.', 'Mentored a team of 5 engineers and established code-review standards.', 'Built an internal design system used across 8 product teams.'] },
+        { company: 'BrightPath Labs', role: 'Software Developer', duration: '2020 — 2023', points: ['Shipped 3 customer-facing products from prototype to general availability.', "Reduced API response times by 45% through query optimization and caching."] }
+      ],
+      socials: [
+        { platform: 'GitHub', icon: 'fa-brands fa-github', link: 'https://github.com/' },
+        { platform: 'LinkedIn', icon: 'fa-brands fa-linkedin', link: 'https://linkedin.com/' },
+        { platform: 'Twitter / X', icon: 'fa-brands fa-x-twitter', link: 'https://x.com/' },
+        { platform: 'LeetCode', icon: 'fa-solid fa-code', link: 'https://leetcode.com/' },
+        { platform: 'Codeforces', icon: 'fa-solid fa-trophy', link: 'https://codeforces.com/' },
+        { platform: 'YouTube', icon: 'fa-brands fa-youtube', link: 'https://youtube.com/' },
+        { platform: 'Discord', icon: 'fa-brands fa-discord', link: 'https://discord.com/' },
+        { platform: 'Email', icon: 'fa-solid fa-envelope', link: 'mailto:zubayer.islam@example.com' }
+      ],
+      customSections: []
+    };
+
+    /* ================================================================
+       APPLICATION STATE
+       ================================================================ */
+    const state = { data: null, editMode: false };
+    let autosaveTimer = null;
+
+    /* ---------------- utility: safe HTML escaping ---------------- */
+    function escapeHTML(str) {
+      if (str === undefined || str === null) return '';
+      return String(str).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    /* ---------------- utility: nested path get/set ---------------- */
+    function getPath(obj, path) {
+      return path.split('.').reduce(function (o, k) { return (o === undefined || o === null) ? undefined : o[k]; }, obj);
+    }
+    function setPath(obj, path, value) {
+      const keys = path.split('.');
+      let cur = obj;
+      for (let i = 0; i < keys.length - 1; i++) { cur = cur[keys[i]]; }
+      cur[keys[keys.length - 1]] = value;
+    }
+
+    /* ---------------- persistence ---------------- */
+    function loadData() {
+      try {
+        const raw = localStorage.getItem('devfolio_data');
+        if (raw) return JSON.parse(raw);
+      } catch (e) { console.warn('Could not parse saved portfolio data, falling back to defaults.', e); }
+      return JSON.parse(JSON.stringify(DEFAULT_DATA));
+    }
+    function saveData(showToastFlag) {
+      try {
+        localStorage.setItem('devfolio_data', JSON.stringify(state.data));
+        if (showToastFlag !== false) showToastMsg('Changes saved');
+      } catch (e) {
+        showToastMsg('Save failed — storage may be full');
+        console.error(e);
+      }
+    }
+    function scheduleAutosave() {
+      clearTimeout(autosaveTimer);
+      autosaveTimer = setTimeout(function () { saveData(false); }, 700);
+    }
+
+    /* ---------------- password hashing (Web Crypto, offline) ---------------- */
+    async function sha256Hex(str) {
+      const enc = new TextEncoder().encode(str);
+      const buf = await crypto.subtle.digest('SHA-256', enc);
+      return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+    }
+    async function ensurePasswordHash() {
+      let hash = localStorage.getItem('devfolio_pass_hash');
+      if (!hash) {
+        hash = await sha256Hex('687523');
+        localStorage.setItem('devfolio_pass_hash', hash);
+      }
+      return hash;
+    }
+
+    /* ---------------- toast ---------------- */
+    function showToastMsg(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(function () { t.classList.remove('show'); }, 2400);
+    }
+
+    /* ================================================================
+       EDIT MODE STATE TOGGLE
+       ================================================================ */
+    function setEditableState(on) {
+      document.querySelectorAll('.editable-text').forEach(function (elm) {
+        elm.setAttribute('contenteditable', on ? 'true' : 'false');
+      });
+      document.body.classList.toggle('edit-mode', on);
+    }
+
+    /* ================================================================
+       GENERIC LINK / IMAGE EDIT HELPERS
+       ================================================================ */
+    function promptEditLink(path, anchorEl) {
+      const current = getPath(state.data, path) || '';
+      const val = prompt('Enter URL:', current);
+      if (val === null) return;
+      setPath(state.data, path, val);
+      if (path === 'about.resume') {
+        state.data.about.resumeFileName = null; // switched to a plain URL, no longer a local file
+        updateResumeLinkUI();
+      } else if (anchorEl) {
+        anchorEl.setAttribute('href', val);
+      }
+      scheduleAutosave();
+    }
+    /* ---- Direct local file upload -> Base64 Data URL (no external hosting needed) ---- */
+    const MAX_IMAGE_BYTES = 3 * 1024 * 1024;   // 3MB soft cap per image (LocalStorage is limited, ~5-10MB total)
+    const MAX_RESUME_BYTES = 4 * 1024 * 1024;  // 4MB soft cap for resume file
+    let _uploadTargetPath = null;
+
+    function triggerImageUpload(path) {
+      _uploadTargetPath = path;
+      const input = document.getElementById('imageUploadInput');
+      input.value = ''; // allow re-selecting the same file
+      input.click();
+    }
+    function readFileAsDataURL(file) {
+      return new Promise(function (resolve, reject) {
+        const reader = new FileReader();
+        reader.onload = function () { resolve(reader.result); };
+        reader.onerror = function () { reject(reader.error); };
+        reader.readAsDataURL(file);
+      });
+    }
+    async function handleImageFileSelected(file) {
+      if (!file) return;
+      if (!file.type.startsWith('image/')) { alert('Please choose an image file.'); return; }
+      if (file.size > MAX_IMAGE_BYTES) {
+        if (!confirm('This image is larger than 3MB. Large images may fill up LocalStorage quickly. Continue anyway?')) return;
+      }
+      try {
+        const dataUrl = await readFileAsDataURL(file);
+        setPath(state.data, _uploadTargetPath, dataUrl);
+        if (_uploadTargetPath === 'hero.avatar') {
+          document.getElementById('heroAvatar').src = dataUrl;
+        } else if (_uploadTargetPath.indexOf('projects.') === 0) {
+          renderProjects();
+        }
+        scheduleAutosave();
+        showToastMsg('Image uploaded');
+      } catch (e) {
+        console.error(e);
+        alert('Could not read that image file. Please try a different file.');
+      }
+    }
+
+    function triggerResumeUpload() {
+      const input = document.getElementById('resumeUploadInput');
+      input.value = '';
+      input.click();
+    }
+    async function handleResumeFileSelected(file) {
+      if (!file) return;
+      if (file.size > MAX_RESUME_BYTES) {
+        if (!confirm('This file is larger than 4MB. Large files may fill up LocalStorage quickly. Continue anyway?')) return;
+      }
+      try {
+        const dataUrl = await readFileAsDataURL(file);
+        state.data.about.resume = dataUrl;
+        state.data.about.resumeFileName = file.name;
+        updateResumeLinkUI();
+        scheduleAutosave();
+        showToastMsg('Resume uploaded');
+      } catch (e) {
+        console.error(e);
+        alert('Could not read that file. Please try a different file.');
+      }
+    }
+    function updateResumeLinkUI() {
+      const link = document.getElementById('resumeLink');
+      const val = state.data.about.resume || '#';
+      link.setAttribute('href', val);
+      if (typeof val === 'string' && val.indexOf('data:') === 0) {
+        link.setAttribute('download', state.data.about.resumeFileName || 'resume');
+      } else {
+        link.removeAttribute('download');
+      }
+    }
+
+    /* ================================================================
+       STATIC FIELD HYDRATION (hero / about)
+       ================================================================ */
+    function hydrateStaticFields() {
+      document.querySelectorAll('[data-path]').forEach(function (elm) {
+        if (elm.closest('#educationList, #skillsGrid, #projectsGrid, #experienceList, #socialsGrid, #customSectionsContainer')) return;
+        const val = getPath(state.data, elm.getAttribute('data-path'));
+        elm.innerText = (val !== undefined && val !== null) ? val : '';
+      });
+      document.querySelectorAll('[data-href-path]').forEach(function (elm) {
+        const val = getPath(state.data, elm.getAttribute('data-href-path'));
+        if (val !== undefined) elm.setAttribute('href', val);
+      });
+      document.getElementById('heroAvatar').src = state.data.hero.avatar || PLACEHOLDER_IMG;
+      updateResumeLinkUI();
+      document.getElementById('navName').innerText = state.data.hero.name;
+      document.getElementById('footerName').innerText = state.data.hero.name;
+      document.getElementById('footerYear').innerText = new Date().getFullYear();
+    }
+
+    /* ================================================================
+       RENDER: EDUCATION
+       ================================================================ */
+    function renderEducation() {
+      const c = document.getElementById('educationList');
+      c.innerHTML = state.data.education.map(function (item, i) {
+        return '<div class="timeline-item glass card">' +
+          '<div class="timeline-dot"></div>' +
+          '<div class="card-inner">' +
+          '<button class="delete-btn edit-only" onclick="deleteEducation(' + i + ')"><i class="fa-solid fa-xmark"></i></button>' +
+          '<div class="card-row">' +
+          '<span class="editable-text degree" data-path="education.' + i + '.degree" contenteditable="false">' + escapeHTML(item.degree) + '</span>' +
+          '<span class="year mono editable-text" data-path="education.' + i + '.year" contenteditable="false">' + escapeHTML(item.year) + '</span>' +
+          '</div>' +
+          '<div class="editable-text institution" data-path="education.' + i + '.institution" contenteditable="false">' + escapeHTML(item.institution) + '</div>' +
+          '<div class="result mono editable-text" data-path="education.' + i + '.result" contenteditable="false">' + escapeHTML(item.result) + '</div>' +
+          '<div class="achievements editable-text" data-path="education.' + i + '.achievements" contenteditable="false">' + escapeHTML(item.achievements) + '</div>' +
+          '</div>' +
+          '</div>';
+      }).join('');
+      setEditableState(state.editMode);
+    }
+    function addEducation() {
+      state.data.education.push({ degree: 'Degree Name', institution: 'Institution Name', year: '20XX', result: 'CGPA / Result', achievements: 'Notable achievement or honor' });
+      renderEducation(); scheduleAutosave();
+    }
+    function deleteEducation(i) {
+      if (!confirm('Delete this education entry?')) return;
+      state.data.education.splice(i, 1); renderEducation(); scheduleAutosave();
+    }
+
+    /* ================================================================
+       RENDER: EXPERIENCE
+       ================================================================ */
+    function renderExperience() {
+      const c = document.getElementById('experienceList');
+      c.innerHTML = state.data.experience.map(function (item, i) {
+        const pts = item.points.map(function (p, j) {
+          return '<li><span class="editable-text" data-path="experience.' + i + '.points.' + j + '" contenteditable="false">' + escapeHTML(p) + '</span>' +
+            '<button class="mini-x edit-only" onclick="deleteExpPoint(' + i + ',' + j + ')"><i class="fa-solid fa-xmark"></i></button></li>';
+        }).join('');
+        return '<div class="timeline-item glass card">' +
+          '<div class="timeline-dot"></div>' +
+          '<div class="card-inner">' +
+          '<button class="delete-btn edit-only" onclick="deleteExperience(' + i + ')"><i class="fa-solid fa-xmark"></i></button>' +
+          '<div class="card-row">' +
+          '<span class="editable-text role" data-path="experience.' + i + '.role" contenteditable="false">' + escapeHTML(item.role) + '</span>' +
+          '<span class="duration mono editable-text" data-path="experience.' + i + '.duration" contenteditable="false">' + escapeHTML(item.duration) + '</span>' +
+          '</div>' +
+          '<div class="editable-text company" data-path="experience.' + i + '.company" contenteditable="false">' + escapeHTML(item.company) + '</div>' +
+          '<ul class="points">' + pts + '</ul>' +
+          '<button class="add-mini edit-only" onclick="addExpPoint(' + i + ')"><i class="fa-solid fa-plus"></i> Add bullet</button>' +
+          '</div>' +
+          '</div>';
+      }).join('');
+      setEditableState(state.editMode);
+    }
+    function addExpPoint(i) { state.data.experience[i].points.push('New responsibility or achievement'); renderExperience(); scheduleAutosave(); }
+    function deleteExpPoint(i, j) { state.data.experience[i].points.splice(j, 1); renderExperience(); scheduleAutosave(); }
+    function addExperience() {
+      state.data.experience.push({ company: 'Company Name', role: 'Role Title', duration: '20XX — Present', points: ['Key responsibility or achievement'] });
+      renderExperience(); scheduleAutosave();
+    }
+    function deleteExperience(i) {
+      if (!confirm('Delete this experience entry?')) return;
+      state.data.experience.splice(i, 1); renderExperience(); scheduleAutosave();
+    }
+
+    /* ================================================================
+       RENDER: SKILLS
+       ================================================================ */
+    function renderSkills() {
+      const c = document.getElementById('skillsGrid');
+      const cats = state.data.skills;
+      const catHtml = Object.keys(cats).map(function (cat) {
+        const items = cats[cat].map(function (item, i) {
+          return '<div class="skill-item">' +
+            '<div class="skill-top">' +
+            '<span class="editable-text" data-path="skills.' + cat + '.' + i + '.name" contenteditable="false">' + escapeHTML(item.name) + '</span>' +
+            '<span class="mono level-label">' + item.level + '%</span>' +
+            '</div>' +
+            '<div class="skill-bar-track"><div class="skill-bar-fill" style="width:' + item.level + '%"></div></div>' +
+            '<input type="range" min="0" max="100" value="' + item.level + '" class="skill-range edit-only" oninput="updateSkillLevel(this, \'' + cat + '\', ' + i + ')">' +
+            '<button class="mini-x edit-only" onclick="deleteSkill(\'' + cat + '\', ' + i + ')"><i class="fa-solid fa-xmark"></i></button>' +
+            '</div>';
+        }).join('');
+        return '<div class="glass card skill-card">' +
+          '<div class="card-row">' +
+          '<span class="editable-text cat-title" data-cat="' + escapeHTML(cat) + '" contenteditable="false">' + escapeHTML(cat) + '</span>' +
+          '<button class="mini-x edit-only" onclick="deleteSkillCategory(\'' + cat + '\')" title="Delete category"><i class="fa-solid fa-trash"></i></button>' +
+          '</div>' +
+          items +
+          '<button class="add-mini edit-only" onclick="addSkill(\'' + cat + '\')"><i class="fa-solid fa-plus"></i> Add skill</button>' +
+          '</div>';
+      }).join('');
+      c.innerHTML = catHtml + '<button class="add-btn edit-only add-cat-btn" onclick="addSkillCategory()"><i class="fa-solid fa-plus"></i> Add Category</button>';
+      setEditableState(state.editMode);
+    }
+    function updateSkillLevel(rangeEl, cat, i) {
+      const val = parseInt(rangeEl.value, 10);
+      state.data.skills[cat][i].level = val;
+      const wrap = rangeEl.closest('.skill-item');
+      wrap.querySelector('.skill-bar-fill').style.width = val + '%';
+      wrap.querySelector('.level-label').textContent = val + '%';
+      scheduleAutosave();
+    }
+    function addSkill(cat) { state.data.skills[cat].push({ name: 'New Skill', level: 70 }); renderSkills(); scheduleAutosave(); }
+    function deleteSkill(cat, i) { state.data.skills[cat].splice(i, 1); renderSkills(); scheduleAutosave(); }
+    function addSkillCategory() {
+      const name = prompt('Category name:', 'New Category');
+      if (!name) return;
+      if (state.data.skills[name]) { alert('That category already exists.'); return; }
+      state.data.skills[name] = [];
+      renderSkills(); scheduleAutosave();
+    }
+    function deleteSkillCategory(cat) {
+      if (!confirm('Delete category "' + cat + '" and all its skills?')) return;
+      delete state.data.skills[cat];
+      renderSkills(); scheduleAutosave();
+    }
+    function renameSkillCategoryFromEdit(oldCat, newCat) {
+      newCat = (newCat || '').trim();
+      if (!newCat || newCat === oldCat) { renderSkills(); return; }
+      if (state.data.skills[newCat]) { alert('Category "' + newCat + '" already exists.'); renderSkills(); return; }
+      const ordered = {};
+      Object.keys(state.data.skills).forEach(function (k) { ordered[k === oldCat ? newCat : k] = state.data.skills[k]; });
+      state.data.skills = ordered;
+      renderSkills(); scheduleAutosave();
+    }
+
+    /* ================================================================
+       RENDER: PROJECTS
+       ================================================================ */
+    function renderProjects() {
+      const c = document.getElementById('projectsGrid');
+      c.innerHTML = state.data.projects.map(function (p, i) {
+        const tags = p.tags.map(function (tag, j) {
+          return '<span class="tag mono">' + escapeHTML(tag) + ' <button class="tag-x edit-only" onclick="deleteProjectTag(' + i + ',' + j + ')">&times;</button></span>';
+        }).join('');
+        return '<div class="glass card project-card">' +
+          '<div class="project-image-wrap">' +
+          '<img src="' + escapeHTML(p.image || PLACEHOLDER_IMG) + '" alt="' + escapeHTML(p.title) + ' screenshot" class="project-image" onerror="this.onerror=null;this.src=\'' + PLACEHOLDER_IMG + '\';">' +
+          '<button class="img-edit-btn edit-only" onclick="triggerImageUpload(\'projects.' + i + '.image\')" title="Upload image from device"><i class="fa-solid fa-upload"></i></button>' +
+          '</div>' +
+          '<div class="card-inner">' +
+          '<button class="delete-btn edit-only" onclick="deleteProject(' + i + ')"><i class="fa-solid fa-xmark"></i></button>' +
+          '<span class="editable-text project-title" data-path="projects.' + i + '.title" contenteditable="false">' + escapeHTML(p.title) + '</span>' +
+          '<div class="editable-text project-desc" data-path="projects.' + i + '.description" contenteditable="false">' + escapeHTML(p.description) + '</div>' +
+          '<div class="tag-list">' + tags + '<button class="add-mini edit-only" onclick="addProjectTag(' + i + ')">+ tag</button></div>' +
+          '<div class="project-links">' +
+          '<a href="' + escapeHTML(p.demo || '#') + '" target="_blank" rel="noopener" class="link-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>' +
+          '<button class="link-edit-btn edit-only" onclick="promptEditLink(\'projects.' + i + '.demo\', this.previousElementSibling)"><i class="fa-solid fa-pen"></i></button>' +
+          '<a href="' + escapeHTML(p.source || '#') + '" target="_blank" rel="noopener" class="link-btn"><i class="fa-brands fa-github"></i> Source</a>' +
+          '<button class="link-edit-btn edit-only" onclick="promptEditLink(\'projects.' + i + '.source\', this.previousElementSibling)"><i class="fa-solid fa-pen"></i></button>' +
+          '</div>' +
+          '</div>' +
+          '</div>';
+      }).join('');
+      setEditableState(state.editMode);
+    }
+    function addProjectTag(i) {
+      const val = prompt('Tag name:', 'New Tag');
+      if (!val) return;
+      state.data.projects[i].tags.push(val); renderProjects(); scheduleAutosave();
+    }
+    function deleteProjectTag(i, j) { state.data.projects[i].tags.splice(j, 1); renderProjects(); scheduleAutosave(); }
+    function addProject() {
+      state.data.projects.push({ title: 'New Project', description: 'A short description of what this project does and the problem it solves.', tags: ['Tech'], demo: '#', source: '#', image: PLACEHOLDER_IMG });
+      renderProjects(); scheduleAutosave();
+    }
+    function deleteProject(i) {
+      if (!confirm('Delete this project?')) return;
+      state.data.projects.splice(i, 1); renderProjects(); scheduleAutosave();
+    }
+
+    /* ================================================================
+       RENDER: SOCIALS
+       ================================================================ */
+    function renderSocials() {
+      const c = document.getElementById('socialsGrid');
+      c.innerHTML = state.data.socials.map(function (s, i) {
+        return '<div class="glass card social-card">' +
+          '<a href="' + escapeHTML(s.link) + '" target="_blank" rel="noopener" class="social-link">' +
+          '<i class="' + escapeHTML(s.icon) + '"></i>' +
+          '<span class="editable-text" data-path="socials.' + i + '.platform" contenteditable="false">' + escapeHTML(s.platform) + '</span>' +
+          '</a>' +
+          '<button class="link-edit-btn edit-only" onclick="promptEditLink(\'socials.' + i + '.link\', this.previousElementSibling)" title="Edit link"><i class="fa-solid fa-pen"></i></button>' +
+          '<button class="mini-icon-btn edit-only" onclick="promptEditIcon(' + i + ')" title="Change icon"><i class="fa-solid fa-icons"></i></button>' +
+          '<button class="mini-x edit-only" onclick="deleteSocial(' + i + ')"><i class="fa-solid fa-xmark"></i></button>' +
+          '</div>';
+      }).join('');
+      setEditableState(state.editMode);
+    }
+    function promptEditIcon(i) {
+      const cur = state.data.socials[i].icon;
+      const val = prompt('Font Awesome icon class (e.g. fa-brands fa-github):', cur);
+      if (val) { state.data.socials[i].icon = val; renderSocials(); scheduleAutosave(); }
+    }
+    function addSocial() {
+      state.data.socials.push({ platform: 'New Platform', icon: 'fa-solid fa-link', link: '#' });
+      renderSocials(); scheduleAutosave();
+    }
+    function deleteSocial(i) { state.data.socials.splice(i, 1); renderSocials(); scheduleAutosave(); }
+
+    /* ================================================================
+       RENDER: CUSTOM SECTIONS
+       ================================================================ */
+    function renderCustomSections() {
+      const c = document.getElementById('customSectionsContainer');
+      c.innerHTML = state.data.customSections.map(function (sec, i) {
+        return '<section class="section custom-section" id="custom-' + sec.id + '">' +
+          '<div class="section-head reveal">' +
+          '<span class="eyebrow mono">CUSTOM</span>' +
+          '<h2 class="editable-text" data-path="customSections.' + i + '.title" contenteditable="false">' + escapeHTML(sec.title) + '</h2>' +
+          '<div class="sub editable-text" data-path="customSections.' + i + '.subtitle" contenteditable="false">' + escapeHTML(sec.subtitle) + '</div>' +
+          '</div>' +
+          '<div class="glass card custom-content editable-text reveal" data-path="customSections.' + i + '.content" data-rich="true" contenteditable="false">' + (sec.content || '') + '</div>' +
+          '<button class="delete-btn edit-only" style="position:static;margin-top:16px;" onclick="deleteCustomSection(' + i + ')"><i class="fa-solid fa-xmark"></i> Delete Section</button>' +
+          '</section>';
+      }).join('');
+      setEditableState(state.editMode);
+    }
+    function addCustomSection() {
+      const title = prompt('Section title:', 'New Section');
+      if (title === null) return;
+      const subtitle = prompt('Section subtitle:', 'A short description of this section');
+      const id = 'sec_' + Date.now();
+      state.data.customSections.push({
+        id: id,
+        title: title || 'New Section',
+        subtitle: subtitle || '',
+        content: '<p>Start writing your content here. Click inside this block while in edit mode to type.</p>'
+      });
+      renderCustomSections();
+      scheduleAutosave();
+      setTimeout(function () {
+        const elm = document.getElementById('custom-' + id);
+        if (elm) {
+          elm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (window.gsap) gsap.from(elm, { opacity: 0, y: 30, duration: 0.6 });
+        }
+      }, 120);
+    }
+    function deleteCustomSection(i) {
+      if (!confirm('Delete this custom section?')) return;
+      state.data.customSections.splice(i, 1);
+      renderCustomSections(); scheduleAutosave();
+    }
+
+    /* ================================================================
+       GENERIC INLINE-EDIT LISTENER
+       (handles every [data-path].editable-text field via event delegation)
+       ================================================================ */
+    document.addEventListener('focusout', function (e) {
+      const t = e.target;
+      if (!(t instanceof HTMLElement)) return;
+
+      // Skill category rename is a special case (key rename, not a simple path)
+      if (t.classList.contains('cat-title')) {
+        const oldCat = t.getAttribute('data-cat');
+        renameSkillCategoryFromEdit(oldCat, t.innerText);
+        return;
+      }
+
+      if (t.hasAttribute('data-path') && t.classList.contains('editable-text')) {
+        const path = t.getAttribute('data-path');
+        const val = (t.dataset.rich === 'true') ? t.innerHTML : t.innerText;
+        setPath(state.data, path, val);
+        scheduleAutosave();
+      }
+    });
+
+    /* ================================================================
+       ADMIN / EDIT MODE CONTROLS
+       ================================================================ */
+    function openPasswordModal() {
+      document.getElementById('passModal').classList.add('show');
+      document.getElementById('passInput').value = '';
+      document.getElementById('passError').textContent = '';
+      setTimeout(function () { document.getElementById('passInput').focus(); }, 50);
+    }
+    function closePasswordModal() { document.getElementById('passModal').classList.remove('show'); }
+
+    async function submitPassword() {
+      const val = document.getElementById('passInput').value;
+      const hash = await sha256Hex(val);
+      const stored = localStorage.getItem('devfolio_pass_hash');
+      if (hash === stored) {
+        state.editMode = true;
+        setEditableState(true);
+        document.getElementById('editBanner').classList.add('show');
+        document.getElementById('editToggleBtn').classList.add('hidden');
+        closePasswordModal();
+        showToastMsg('Edit mode unlocked');
+        if (window.ScrollTrigger) ScrollTrigger.refresh();
+      } else {
+        document.getElementById('passError').textContent = 'Incorrect password. Please try again.';
+      }
+    }
+
+    function exitEditMode() {
+      state.editMode = false;
+      setEditableState(false);
+      document.getElementById('editBanner').classList.remove('show');
+      document.getElementById('editToggleBtn').classList.remove('hidden');
+      saveData(false);
+      showToastMsg('Exited edit mode');
+    }
+
+    /* ================================================================
+       INITIALISATION
+       ================================================================ */
+    document.addEventListener('DOMContentLoaded', async function () {
+      // 1. Load persisted (or default) data
+      state.data = loadData();
+
+      // 2. Hydrate static fields + render dynamic lists
+      hydrateStaticFields();
+      renderEducation();
+      renderExperience();
+      renderSkills();
+      renderProjects();
+      renderSocials();
+      renderCustomSections();
+      setEditableState(false);
+
+      // 3. Ensure a password hash exists (defaults to 687523)
+      await ensurePasswordHash();
+
+      // 4. Wire up edit-mode UI
+      document.getElementById('editToggleBtn').addEventListener('click', openPasswordModal);
+      document.getElementById('passCancel').addEventListener('click', closePasswordModal);
+      document.getElementById('passSubmit').addEventListener('click', submitPassword);
+      document.getElementById('passInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') submitPassword(); });
+      document.getElementById('passModal').addEventListener('click', function (e) { if (e.target === this) closePasswordModal(); });
+
+      document.getElementById('btnSave').addEventListener('click', function () { saveData(true); });
+      document.getElementById('btnAddSection').addEventListener('click', addCustomSection);
+      document.getElementById('btnExit').addEventListener('click', exitEditMode);
+      document.getElementById('btnExport').addEventListener('click', function () {
+        const blob = new Blob([JSON.stringify(state.data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'portfolio-backup-' + Date.now() + '.json';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToastMsg('Backup exported');
+      });
+
+      document.getElementById('btnChangePass').addEventListener('click', function () {
+        document.getElementById('changePassModal').classList.add('show');
+        ['oldPass', 'newPass', 'confirmPass'].forEach(function (id) { document.getElementById(id).value = ''; });
+        document.getElementById('changePassError').textContent = '';
+      });
+      document.getElementById('changePassCancel').addEventListener('click', function () {
+        document.getElementById('changePassModal').classList.remove('show');
+      });
+      document.getElementById('changePassModal').addEventListener('click', function (e) {
+        if (e.target === this) this.classList.remove('show');
+      });
+      document.getElementById('changePassSubmit').addEventListener('click', async function () {
+        const oldP = document.getElementById('oldPass').value;
+        const newP = document.getElementById('newPass').value;
+        const confirmP = document.getElementById('confirmPass').value;
+        const errEl = document.getElementById('changePassError');
+        const oldHash = await sha256Hex(oldP);
+        const stored = localStorage.getItem('devfolio_pass_hash');
+        if (oldHash !== stored) { errEl.textContent = 'Current password is incorrect.'; return; }
+        if (!newP || newP.length < 4) { errEl.textContent = 'New password must be at least 4 characters.'; return; }
+        if (newP !== confirmP) { errEl.textContent = 'New passwords do not match.'; return; }
+        const newHash = await sha256Hex(newP);
+        localStorage.setItem('devfolio_pass_hash', newHash);
+        document.getElementById('changePassModal').classList.remove('show');
+        showToastMsg('Password updated successfully');
+      });
+
+      // 5. Direct file upload wiring (Base64 Data URL conversion, no backend needed)
+      document.getElementById('imageUploadInput').addEventListener('change', function (e) {
+        handleImageFileSelected(e.target.files[0]);
+      });
+      document.getElementById('resumeUploadInput').addEventListener('change', function (e) {
+        handleResumeFileSelected(e.target.files[0]);
+      });
+
+      // 6. Mobile nav toggle
+      const navToggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
+      navToggle.addEventListener('click', function () { navLinks.classList.toggle('open'); });
+      navLinks.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () { navLinks.classList.remove('open'); });
+      });
+
+      // 7. Three.js background + GSAP animations
+      initThree();
+      initAnimations();
+    });
+
+    /* ================================================================
+       THREE.JS — INTERACTIVE BACKGROUND
+       ================================================================ */
+    function initThree() {
+      const canvas = document.getElementById('bg-canvas');
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 22;
+
+      // Particle field
+      const particleCount = 900;
+      const positions = new Float32Array(particleCount * 3);
+      const colorsArr = new Float32Array(particleCount * 3);
+      const colorA = new THREE.Color(0x00e5ff);
+      const colorB = new THREE.Color(0x7c5cff);
+      for (let i = 0; i < particleCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 60;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 40;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
+        const mixed = colorA.clone().lerp(colorB, Math.random());
+        colorsArr[i * 3] = mixed.r; colorsArr[i * 3 + 1] = mixed.g; colorsArr[i * 3 + 2] = mixed.b;
+      }
+      const particleGeo = new THREE.BufferGeometry();
+      particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      particleGeo.setAttribute('color', new THREE.BufferAttribute(colorsArr, 3));
+      const particleMat = new THREE.PointsMaterial({ size: 0.18, vertexColors: true, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false });
+      const points = new THREE.Points(particleGeo, particleMat);
+      scene.add(points);
+
+      // Morphing wireframe centerpiece (double icosahedron shell)
+      const icoGeo1 = new THREE.IcosahedronGeometry(7, 1);
+      const icoMat1 = new THREE.MeshBasicMaterial({ color: 0x00e5ff, wireframe: true, transparent: true, opacity: 0.32 });
+      const ico1 = new THREE.Mesh(icoGeo1, icoMat1);
+      scene.add(ico1);
+
+      const icoGeo2 = new THREE.IcosahedronGeometry(9.4, 1);
+      const icoMat2 = new THREE.MeshBasicMaterial({ color: 0x7c5cff, wireframe: true, transparent: true, opacity: 0.16 });
+      const ico2 = new THREE.Mesh(icoGeo2, icoMat2);
+      scene.add(ico2);
+
+      // Mouse / touch interaction
+      let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+      window.addEventListener('mousemove', function (e) {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+      });
+      window.addEventListener('touchmove', function (e) {
+        if (e.touches && e.touches[0]) {
+          mouseX = (e.touches[0].clientX / window.innerWidth - 0.5) * 2;
+          mouseY = (e.touches[0].clientY / window.innerHeight - 0.5) * 2;
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', function () {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      const clock = new THREE.Clock();
+      (function animate() {
+        requestAnimationFrame(animate);
+        const t = clock.getElapsedTime();
+        targetX += (mouseX - targetX) * 0.03;
+        targetY += (mouseY - targetY) * 0.03;
+
+        points.rotation.y = t * 0.02 + targetX * 0.3;
+        points.rotation.x = targetY * 0.15;
+
+        ico1.rotation.y = t * 0.08 + targetX * 0.5;
+        ico1.rotation.x = t * 0.05 + targetY * 0.3;
+        ico2.rotation.y = -t * 0.05 - targetX * 0.3;
+        ico2.rotation.x = -t * 0.03 + targetY * 0.2;
+
+        camera.position.x += (targetX * 2 - camera.position.x) * 0.05;
+        camera.position.y += (-targetY * 1.2 - camera.position.y) * 0.05;
+        camera.lookAt(scene.position);
+
+        renderer.render(scene, camera);
+      })();
+    }
+
+    /* ================================================================
+       GSAP — SCROLL / ENTRANCE ANIMATIONS
+       ================================================================ */
+    function initAnimations() {
+      if (!window.gsap) return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero entrance sequence
+      const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      heroTl
+        .from('.hero-text .eyebrow', { opacity: 0, y: 20, duration: 0.6 })
+        .from('.hero-name', { opacity: 0, y: 30, duration: 0.8 }, '-=0.3')
+        .from('.hero-title', { opacity: 0, y: 30, duration: 0.8 }, '-=0.5')
+        .from('.hero-tagline', { opacity: 0, y: 20, duration: 0.7 }, '-=0.5')
+        .from('.hero-ctas .cta-wrap', { opacity: 0, y: 20, duration: 0.6, stagger: 0.15 }, '-=0.4')
+        .from('.avatar-wrap', { opacity: 0, scale: 0.85, duration: 0.9 }, '-=0.9');
+
+      // Scroll reveals for every marked block
+      gsap.utils.toArray('.reveal').forEach(function (elm) {
+        gsap.from(elm, {
+          opacity: 0, y: 40, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: { trigger: elm, start: 'top 88%' }
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>
